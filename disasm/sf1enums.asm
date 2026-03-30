@@ -864,9 +864,9 @@ EVENT_FLAGS_COUNTER: equ 63
 ; ---------------------------------------------------------------------------
 
 ; enum ExperienceValues
-EXPERIENCE_PER_HEAL: equ 10
+EXPERIENCE_PER_HEAL: equ 20
 EXPERIENCE_HEAL_CAP: equ 20
-EXPERIENCE_ACTION_CAP: equ 48
+EXPERIENCE_ACTION_CAP: equ 50
 
 ; ---------------------------------------------------------------------------
 
