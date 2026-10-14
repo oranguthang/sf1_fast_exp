@@ -331,8 +331,12 @@ loc_20D52:
 		bne.s   loc_20D68
 		cmp.w   ((EFFECT_STATUS_CHANGE-$1000000)).w,d3
 		bne.s   loc_20D62
+	if (EASY_FAST_EXP=1)
 		nop
 		nop
+	else
+		addq.w  #1,((EXPERIENCE_TO_GAIN-$1000000)).w
+	endif
 		bra.s   loc_20D68
 loc_20D62:
 		addi.w  #EXPERIENCE_PER_HEAL,((EXPERIENCE_TO_GAIN-$1000000)).w
@@ -388,8 +392,13 @@ loc_20DCC:
 		clr.w   ((EFFECT_REACTION-$1000000)).w
 loc_20DE2:
 		tst.w   ((EXPERIENCE_TO_GAIN-$1000000)).w
+	if (EASY_FAST_EXP=1)
 		beq.s   loc_20DEE
 		move.w  #EXPERIENCE_ACTION_CAP,((EXPERIENCE_TO_GAIN-$1000000)).w
+	else
+		bne.s   loc_20DEE
+		move.w  #1,((EXPERIENCE_TO_GAIN-$1000000)).w
+	endif
 loc_20DEE:
 		movem.l (sp)+,d2-d7
 		rts
@@ -482,6 +491,7 @@ loc_20E82:
 
     ; End of function CalculateKillExperience
 
+	if (EASY_FAST_EXP=1)
 		dc.b EXPERIENCE_ACTION_CAP ; 3 or more levels below target
 		dc.b EXPERIENCE_ACTION_CAP
 		dc.b EXPERIENCE_ACTION_CAP
@@ -492,6 +502,18 @@ table_KillExperienceGains:
 		dc.b EXPERIENCE_ACTION_CAP
 		dc.b EXPERIENCE_ACTION_CAP
 		dc.b EXPERIENCE_ACTION_CAP ; 5 or more levels above target
+	else
+		dc.b 48                 ; 3 or more levels below target
+		dc.b 32
+		dc.b 24
+table_KillExperienceGains:
+		dc.b 16                 ; same level as target
+		dc.b 10
+		dc.b 6
+		dc.b 4
+		dc.b 2
+		dc.b 1                  ; 5 or more levels above target
+	endif
 		dc.b $FF
 
 ; =============== S U B R O U T I N E =======================================

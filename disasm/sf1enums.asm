@@ -864,9 +864,15 @@ EVENT_FLAGS_COUNTER: equ 63
 ; ---------------------------------------------------------------------------
 
 ; enum ExperienceValues
+	if (EASY_FAST_EXP=1)
 EXPERIENCE_PER_HEAL: equ 20
 EXPERIENCE_HEAL_CAP: equ 20
 EXPERIENCE_ACTION_CAP: equ 50
+	else
+EXPERIENCE_PER_HEAL: equ 10
+EXPERIENCE_HEAL_CAP: equ 20
+EXPERIENCE_ACTION_CAP: equ 48
+	endif
 
 ; ---------------------------------------------------------------------------
 
