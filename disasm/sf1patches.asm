@@ -16,3 +16,6 @@ EASY_KEEP_GOLD_ON_DEFEAT:           equ 1       ; The Force's gold is not halved
 EASY_CHURCH_RAISE_COST_PER_LEVEL:   equ 5       ; Vanilla = 10
 EASY_CHURCH_CURE_POISON_COST:       equ 5       ; Vanilla = 10. Must not exceed 127.
 EASY_CHURCH_CURE_CURSE_COST:        equ 10      ; Vanilla = 20. Must not exceed 127.
+
+; Battle
+EASY_NO_DEFEAT_ON_LEADER_DEATH:     equ 1       ; The battle is lost only when no ally is left, instead of when Max dies. Max is revived when the battle ends.

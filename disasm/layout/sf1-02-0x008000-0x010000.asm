@@ -5169,6 +5169,18 @@ loc_AD06:
 		moveq   #1,d0
 		move.b  d0,((byte_FFB4D7-$1000000)).w
 loc_AD24:
+	if (EASY_NO_DEFEAT_ON_LEADER_DEATH=1)
+		; Same size as the vanilla code
+		nop
+		nop
+		nop
+		nop
+		tst.w   d0              ; skip check if battle is won
+		bne.s   loc_AD36
+		tst.w   d2              ; check if any ally is left
+		bne.s   loc_AD36
+		moveq   #2,d0
+	else
 		move.w  d0,-(sp)
 		clr.w   d0
 		jsr     j_GetCurrentHpForCombatant
@@ -5176,6 +5188,7 @@ loc_AD24:
 		tst.w   d1              ; check if hero dead
 		bne.s   loc_AD36
 		moveq   #2,d0
+	endif
 loc_AD36:
 		moveq   #-1,d1
 		rts

@@ -189,6 +189,20 @@ ResetForceMemberStats:
 		movem.l d0-d1,-(sp)
 		moveq   #FORCE_MEMBERS_COUNTER,d0
 loc_24D14:
+	if (EASY_NO_DEFEAT_ON_LEADER_DEATH=1)
+		; Same size as the vanilla code: short calls make room for always reviving Max
+		bsr.w   j_GetStatusEffects
+		andi.w  #STATUSEFFECT_POISON|STATUSEFFECT_CURSE,d1
+		bsr.w   j_SetStatusEffects
+		bsr.w   j_GetCurrentHp
+		tst.w   d1
+		bne.s   @Refill
+		tst.w   d0              ; Max (ALLY_MAX = 0) is revived even if dead
+		bne.s   loc_24D34
+@Refill:
+		jsr     j_RefillHp
+		nop
+	else
 		jsr     j_GetStatusEffects
 		andi.w  #STATUSEFFECT_POISON|STATUSEFFECT_CURSE,d1
 		jsr     j_SetStatusEffects
@@ -196,6 +210,7 @@ loc_24D14:
 		tst.w   d1
 		beq.s   loc_24D34
 		jsr     j_RefillHp
+	endif
 loc_24D34:
 		jsr     j_RefillMp
 		dbf     d0,loc_24D14
