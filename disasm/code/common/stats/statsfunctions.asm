@@ -150,7 +150,7 @@ HandlePoison:
 		btst    #STATUSEFFECT_BIT_POISON,d1
 		beq.s   loc_24CE8
 		bset    #31,d3
-		moveq   #2,d1           ; inflict 2 points of damage
+		moveq   #EASY_POISON_DAMAGE,d1 ; inflict poison damage (vanilla: 2 points)
 		jsr     j_DecreaseCurrentHpForCombatant
 		tst.w   d1
 		bne.s   loc_24CE8
