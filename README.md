@@ -19,6 +19,10 @@ All tweaks are controlled by constants in [`disasm/sf1patches.asm`](disasm/sf1pa
 | `EASY_CHURCH_CURE_CURSE_COST` | 10 | 20 | Cure curse cost |
 | `EASY_NO_DEFEAT_ON_LEADER_DEATH` | 1 | 0 | The battle is lost only when no ally is left, not when Max dies; Max is revived when the battle ends |
 | `EASY_POISON_DAMAGE` | 1 | 2 | Poison damage per turn, for allies and enemies |
+| `EASY_ENEMY_HP_PERCENT` | 100 | 100 | Enemy HP, in percent |
+| `EASY_ENEMY_ATK_PERCENT` | 100 | 100 | Enemy base ATK, in percent |
+| `EASY_ENEMY_DEF_PERCENT` | 100 | 100 | Enemy base DEF, in percent |
+| `EASY_ENEMY_AGI_PERCENT` | 100 | 100 | Enemy base AGI, in percent |
 
 ### Fast EXP
 

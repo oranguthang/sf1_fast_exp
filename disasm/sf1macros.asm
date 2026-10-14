@@ -312,20 +312,38 @@ level:      macro
                 dc.b \1
             endm
     
+; Scale enemy stat \1 by \2 percent -> easyScaledStat
+; Nonzero stats stay at least 1, and the result is capped at \3.
+scaleEnemyStat: macro
+easyScaledStat = ((\1)*(\2))/100
+            if (easyScaledStat=0)
+            if ((\1)<>0)
+easyScaledStat = 1
+            endif
+            endif
+            if (easyScaledStat>\3)
+easyScaledStat = \3
+            endif
+            endm
+    
 baseATK:    macro
-                dc.b \1
+                scaleEnemyStat \1,EASY_ENEMY_ATK_PERCENT,255
+                dc.b easyScaledStat
             endm
     
 baseDEF:    macro
-                dc.b \1
+                scaleEnemyStat \1,EASY_ENEMY_DEF_PERCENT,255
+                dc.b easyScaledStat
             endm
     
 baseAGI:    macro
-                dc.b \1
+                scaleEnemyStat \1,EASY_ENEMY_AGI_PERCENT,255
+                dc.b easyScaledStat
             endm
     
 baseHP:     macro
-                dc.w \1
+                scaleEnemyStat \1,EASY_ENEMY_HP_PERCENT,32767
+                dc.w easyScaledStat
             endm
     
 baseMP:     macro

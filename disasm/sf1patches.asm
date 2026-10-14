@@ -20,3 +20,9 @@ EASY_CHURCH_CURE_CURSE_COST:        equ 10      ; Vanilla = 20. Must not exceed 
 ; Battle
 EASY_NO_DEFEAT_ON_LEADER_DEATH:     equ 1       ; The battle is lost only when no ally is left, instead of when Max dies. Max is revived when the battle ends.
 EASY_POISON_DAMAGE:                 equ 1       ; Poison damage per turn, for allies and enemies. Vanilla = 2. Must not exceed 127.
+
+; Enemies (base stats from the enemy definitions)
+EASY_ENEMY_HP_PERCENT:              equ 100     ; Vanilla = 100. Nonzero stats stay at least 1.
+EASY_ENEMY_ATK_PERCENT:             equ 100     ; Vanilla = 100
+EASY_ENEMY_DEF_PERCENT:             equ 100     ; Vanilla = 100
+EASY_ENEMY_AGI_PERCENT:             equ 100     ; Vanilla = 100
