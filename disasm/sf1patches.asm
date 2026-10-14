@@ -9,3 +9,10 @@
 
 EASY_FAST_EXP:                      equ 1       ; Faster leveling: healing and kill EXP rewards are raised up to the 50 EXP per action cap. See README.md for details.
 
+; Economy
+EASY_ENEMY_GOLD_PERCENT:            equ 200     ; Gold earned for defeating enemies, in percent. Vanilla = 100. Resulting amounts must not exceed 65535.
+EASY_SHOP_PRICE_PERCENT:            equ 100     ; Item prices, in percent. Also affects sell prices. Vanilla = 100. Resulting prices must not exceed 65535.
+EASY_KEEP_GOLD_ON_DEFEAT:           equ 1       ; The Force's gold is not halved when Max is defeated.
+EASY_CHURCH_RAISE_COST_PER_LEVEL:   equ 5       ; Vanilla = 10
+EASY_CHURCH_CURE_POISON_COST:       equ 5       ; Vanilla = 10. Must not exceed 127.
+EASY_CHURCH_CURE_CURSE_COST:        equ 10      ; Vanilla = 20. Must not exceed 127.

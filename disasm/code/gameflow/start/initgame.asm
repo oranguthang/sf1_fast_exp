@@ -73,7 +73,11 @@ loc_3154:
 		cmpi.b  #-1,d0
 		bne.s   loc_3174
 		jsr     j_GetGold
+	if (EASY_KEEP_GOLD_ON_DEFEAT=1)
+		nop
+	else
 		lsr.l   #1,d1
+	endif
 		jsr     j_SetGold
 		clr.w   d0
 		clr.w   d1

@@ -301,7 +301,7 @@ spells:     macro
 ; enemy definition
 
 enemyGold:  macro
-                dc.w \1
+                dc.w (\1*EASY_ENEMY_GOLD_PERCENT)/100
             endm
     
 enemyClass: macro
@@ -385,7 +385,7 @@ attackEffect: macro
     endm
     
 price: macro
-    dc.w \1
+    dc.w (\1*EASY_SHOP_PRICE_PERCENT)/100
     endm
     
 moveType: macro

@@ -1403,10 +1403,10 @@ MAPSPRITE_161: equ 161
 ; ---------------------------------------------------------------------------
 
 ; enum MenuActions
-CHURCH_CURE_POISON_COST: equ 10
-CHURCH_RAISE_COST_PER_LEVEL: equ 10
+CHURCH_CURE_POISON_COST: equ EASY_CHURCH_CURE_POISON_COST
+CHURCH_RAISE_COST_PER_LEVEL: equ EASY_CHURCH_RAISE_COST_PER_LEVEL
 CHURCH_BASE_PROMOTION_LEVEL: equ 10
-CHURCH_CURE_CURSE_COST: equ 20
+CHURCH_CURE_CURSE_COST: equ EASY_CHURCH_CURE_CURSE_COST
 
 ; ---------------------------------------------------------------------------
 

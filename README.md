@@ -2,16 +2,30 @@
 
 `sf1_fast_exp` is a gameplay-focused fork of [ShiningForceCentral/SF1DISASM](https://github.com/ShiningForceCentral/SF1DISASM).
 
-This repository tracks the upstream `main` branch and reapplies a fast EXP tweak on top of it, while keeping the normal split/build workflow from the base disassembly project.
+This repository tracks the upstream `main` branch and reapplies a set of easy mode tweaks on top of it, while keeping the normal split/build workflow from the base disassembly project.
 
-## What Changed
+## Easy Mode Settings
 
-This fork changes battle EXP gain behavior to speed up leveling:
+All tweaks are controlled by constants in [`disasm/sf1patches.asm`](disasm/sf1patches.asm). Setting a value back to its vanilla default disables the tweak. Code patches keep the original instruction sizes, so the ROM layout is not shifted.
 
-- healing actions now use a 20 EXP floor instead of 10,
-- support/status actions now award 20 EXP instead of 1 or 10,
-- physical attacks and kill rewards now resolve to the 50 EXP action cap,
-- the per-action EXP cap is now 50 instead of 48.
+| Constant | Default | Vanilla | Effect |
+|---|---|---|---|
+| `EASY_FAST_EXP` | 1 | 0 | Faster leveling (see below) |
+| `EASY_ENEMY_GOLD_PERCENT` | 200 | 100 | Gold earned for defeating enemies, in percent |
+| `EASY_SHOP_PRICE_PERCENT` | 100 | 100 | Item prices, in percent (also sell prices) |
+| `EASY_KEEP_GOLD_ON_DEFEAT` | 1 | 0 | Gold is not halved when Max is defeated |
+| `EASY_CHURCH_RAISE_COST_PER_LEVEL` | 5 | 10 | Raise cost per level |
+| `EASY_CHURCH_CURE_POISON_COST` | 5 | 10 | Cure poison cost |
+| `EASY_CHURCH_CURE_CURSE_COST` | 10 | 20 | Cure curse cost |
+
+### Fast EXP
+
+With `EASY_FAST_EXP` enabled:
+
+- healing actions use a 20 EXP floor instead of 10,
+- support/status actions award 20 EXP instead of 1 or 10,
+- physical attacks and kill rewards resolve to the 50 EXP action cap,
+- the per-action EXP cap is 50 instead of 48.
 
 ## Upstream Base
 
@@ -58,8 +72,8 @@ sf1_fast_exp/
 
 ## Notes
 
-- This fork is not intended to stay bit-perfect with the original ROM, because it deliberately changes EXP behavior.
-- The split/build process remains the same as upstream; only the gameplay EXP logic is changed here.
+- This fork is not intended to stay bit-perfect with the original ROM, because it deliberately changes gameplay behavior. Setting every easy mode constant to its vanilla value should produce the original ROM.
+- The split/build process remains the same as upstream; only gameplay values and logic are changed here.
 - If you want the unmodified upstream disassembly baseline, use `ShiningForceCentral/SF1DISASM` directly.
 
 ## Credits
