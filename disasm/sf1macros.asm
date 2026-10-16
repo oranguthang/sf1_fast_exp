@@ -426,28 +426,42 @@ specialAttack: macro
     defineShorthand.b SPECIAL_,\1
     endm
     
+; Growth value \1 is scaled by EASY_STAT_GROWTH_PERCENT and capped to the field range.
+; With EASY_LINEAR_GROWTH, curve \2 is replaced by the linear curve.
+defineGrowth: macro
+easyGrowth = ((\1)*EASY_STAT_GROWTH_PERCENT)/100
+            if (easyGrowth>GROWTH_MASK_VALUE)
+easyGrowth = GROWTH_MASK_VALUE
+            endif
+            if (EASY_LINEAR_GROWTH=1)
+    dc.b easyGrowth+GROWTHCURVE_LINEAR
+            else
+    dc.b easyGrowth+GROWTHCURVE_\2
+            endif
+    endm
+
 atkGrowth: macro
-    dc.b \1+GROWTHCURVE_\2
+    defineGrowth \1,\2
     endm
     
 defGrowth: macro
-    dc.b \1+GROWTHCURVE_\2
+    defineGrowth \1,\2
     endm
     
 agiGrowth: macro
-    dc.b \1+GROWTHCURVE_\2
+    defineGrowth \1,\2
     endm
     
 hpGrowth: macro
-    dc.b \1+GROWTHCURVE_\2
+    defineGrowth \1,\2
     endm
     
 mpGrowth: macro
-    dc.b \1+GROWTHCURVE_\2
+    defineGrowth \1,\2
     endm
     
 critGrowth: macro
-    dc.b \1+GROWTHCURVE_\2
+    defineGrowth \1,\2
     endm
     
 caster: macro

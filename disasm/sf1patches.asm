@@ -21,6 +21,11 @@ EASY_CHURCH_CURE_CURSE_COST:        equ 10      ; Vanilla = 20. Must not exceed 
 EASY_NO_DEFEAT_ON_LEADER_DEATH:     equ 1       ; The battle is lost only when no ally is left, instead of when Max dies. Max is revived when the battle ends.
 EASY_POISON_DAMAGE:                 equ 1       ; Poison damage per turn, for allies and enemies. Vanilla = 2. Must not exceed 127.
 
+; Ally growth
+EASY_STAT_GROWTH_PERCENT:           equ 150     ; Total stat growth from level 1 to 20 (before and after promotion), in percent. Vanilla = 100. Growth values are capped at 63.
+EASY_LINEAR_GROWTH:                 equ 1       ; All growth curves are linear, so stats grow evenly instead of late in the level range.
+EASY_HIGH_LEVEL_STAT_GAIN_ODDS:     equ 2       ; Above level 20 each stat gains 1 point with a 1 in N chance. Vanilla = 4. Must be between 1 and 127.
+
 ; Enemies (base stats from the enemy definitions)
 EASY_ENEMY_HP_PERCENT:              equ 100     ; Vanilla = 100. Nonzero stats stay at least 1.
 EASY_ENEMY_ATK_PERCENT:             equ 100     ; Vanilla = 100

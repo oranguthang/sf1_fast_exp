@@ -127,7 +127,7 @@ loc_247FC:
 		bge.s   loc_2481A
 		                
 		move.w  d2,d1           ; set target stat to current value
-		moveq   #4,d6           ; get random number in the range 0-3
+		moveq   #EASY_HIGH_LEVEL_STAT_GAIN_ODDS,d6 ; get random number in the range 0-3 (vanilla odds)
 		jsr     (j_GenerateRandomNumber).l
 		tst.w   d7
 		bne.s   loc_24818

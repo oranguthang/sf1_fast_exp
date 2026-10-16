@@ -19,6 +19,9 @@ All tweaks are controlled by constants in [`disasm/sf1patches.asm`](disasm/sf1pa
 | `EASY_CHURCH_CURE_CURSE_COST` | 10 | 20 | Cure curse cost |
 | `EASY_NO_DEFEAT_ON_LEADER_DEATH` | 1 | 0 | The battle is lost only when no ally is left, not when Max dies; Max is revived when the battle ends |
 | `EASY_POISON_DAMAGE` | 1 | 2 | Poison damage per turn, for allies and enemies |
+| `EASY_STAT_GROWTH_PERCENT` | 150 | 100 | Total ally stat growth from level 1 to 20, in percent (growth values are capped at 63) |
+| `EASY_LINEAR_GROWTH` | 1 | 0 | All growth curves are linear, so stats grow evenly instead of late in the level range |
+| `EASY_HIGH_LEVEL_STAT_GAIN_ODDS` | 2 | 4 | Above level 20 each stat gains 1 point with a 1 in N chance |
 | `EASY_ENEMY_HP_PERCENT` | 100 | 100 | Enemy HP, in percent |
 | `EASY_ENEMY_ATK_PERCENT` | 100 | 100 | Enemy base ATK, in percent |
 | `EASY_ENEMY_DEF_PERCENT` | 100 | 100 | Enemy base DEF, in percent |
