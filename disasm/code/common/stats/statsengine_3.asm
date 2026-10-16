@@ -27,7 +27,15 @@ GetMapSpriteForCombatant:
 
 GetMapsprite:
 		movem.l d0/a0-a1,-(sp)
+	if (EASY_NO_DEFEAT_ON_LEADER_DEATH=1)
+		; Same size as the vanilla code: return -1 for an empty or defeated slot
+		; instead of leaving D1 unchanged, so the map sprite reload after a
+		; battlescene skips a defeated Max in slot 0 rather than loading garbage
+		moveq   #-1,d1
+		cmp.b   d1,d0
+	else
 		cmpi.b  #-1,d0
+	endif
 		beq.s   @Done
 		tst.b   d0
 		bge.s   @ForceMember
