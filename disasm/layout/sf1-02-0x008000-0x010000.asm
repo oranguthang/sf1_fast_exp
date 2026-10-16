@@ -5171,15 +5171,15 @@ loc_AD06:
 loc_AD24:
 	if (EASY_NO_DEFEAT_ON_LEADER_DEATH=1)
 		; Same size as the vanilla code
-		nop
-		nop
-		nop
-		nop
 		tst.w   d0              ; skip check if battle is won
-		bne.s   loc_AD36
+		beq.s   @CheckAllies
+		bsr.w   RestoreDefeatedMax
+		bra.s   loc_AD36
+@CheckAllies:
 		tst.w   d2              ; check if any ally is left
 		bne.s   loc_AD36
 		moveq   #2,d0
+		nop
 	else
 		move.w  d0,-(sp)
 		clr.w   d0
@@ -9759,5 +9759,37 @@ return_FD56:
 		rts
 
     ; End of function sub_FC94
+
+	if (EASY_NO_DEFEAT_ON_LEADER_DEATH=1)
+
+; =============== S U B R O U T I N E =======================================
+
+; Put a defeated Max back on the battlefield once the battle is won, so that
+; post-battle exploration starts with him standing where he fell. Otherwise
+; he is added back off the map at -1,-1 and the player is left without
+; anyone to control.
+
+RestoreDefeatedMax:
+		tst.b   ((COMBATANT_DATA-$1000000)).w
+		bpl.s   @Return         ; Max (slot 0) is still on the battlefield
+		movem.l d0-a6,-(sp)
+		clr.b   ((COMBATANT_DATA-$1000000)).w ; entity ALLY_MAX, position kept
+		clr.w   d0
+		jsr     j_GetMapSpriteForCombatant
+		movea.l (p_pt_Mapsprites_Front).l,a0
+		lsl.w   #2,d1
+		movea.l (a0,d1.w),a0
+		jsr     (sub_300).l
+		lea     (FF3000_LOADING_SPACE).l,a0
+		clr.w   d0
+		bsr.w   sub_830A        ; reload his map sprite tiles
+		bsr.w   sub_98A8        ; and put his sprite back on screen
+		movem.l (sp)+,d0-a6
+@Return:
+		rts
+
+    ; End of function RestoreDefeatedMax
+
+	endif
 
 		align $8000
