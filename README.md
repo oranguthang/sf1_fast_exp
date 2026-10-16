@@ -18,6 +18,7 @@ All tweaks are controlled by constants in [`disasm/sf1patches.asm`](disasm/sf1pa
 | `EASY_CHURCH_CURE_POISON_COST` | 5 | 10 | Cure poison cost |
 | `EASY_CHURCH_CURE_CURSE_COST` | 10 | 20 | Cure curse cost |
 | `EASY_NO_DEFEAT_ON_LEADER_DEATH` | 1 | 0 | The battle is lost only when no ally is left, not when Max dies; Max is revived when the battle ends |
+| `EASY_NO_TERRAIN_MOVE_PENALTY` | 1 | 0 | Every passable terrain costs allies 1 MOV, like plains; impassable terrain stays impassable, land effect and enemies are unchanged |
 | `EASY_POISON_DAMAGE` | 1 | 2 | Poison damage per turn, for allies and enemies |
 | `EASY_STAT_GROWTH_PERCENT` | 150 | 100 | Total ally stat growth from level 1 to 20, in percent (growth values are capped at 63) |
 | `EASY_LINEAR_GROWTH` | 1 | 0 | All growth curves are linear, so stats grow evenly instead of late in the level range |

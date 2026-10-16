@@ -933,9 +933,15 @@ GetClassEntryAddress:
 ; Get combatant D0 move cost entry address -> A0
 
 GetMoveCostEntryAddress:
-		
+
+	if (EASY_NO_TERRAIN_MOVE_PENALTY=1)
+		; Same size as the vanilla code
+		jmp     (EasyGetMoveCostEntryAddress).l
+		nop
+	else
 		movea.l (p_MoveCostData).l,a0
 		bra.s   loc_23936
+	endif
 
     ; End of function GetMoveCostEntryAddress
 

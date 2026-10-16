@@ -426,6 +426,21 @@ specialAttack: macro
     defineShorthand.b SPECIAL_,\1
     endm
     
+; Move cost \1 for one terrain type. When building the ally copy of the table
+; (easyAllyMoveCostTable = 1), every passable terrain costs 1 MOV.
+easyAllyMoveCostTable = 0
+moveCost: macro
+easyMoveCost = \1
+            if (easyAllyMoveCostTable=1)
+            if (easyMoveCost<>255)
+            if (easyMoveCost>1)
+easyMoveCost = 1
+            endif
+            endif
+            endif
+    dc.b easyMoveCost
+    endm
+
 ; Growth value \1 is scaled by EASY_STAT_GROWTH_PERCENT and capped to the field range.
 ; With EASY_LINEAR_GROWTH, curve \2 is replaced by the linear curve.
 defineGrowth: macro

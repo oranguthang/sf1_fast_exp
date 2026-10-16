@@ -9792,4 +9792,34 @@ RestoreDefeatedMax:
 
 	endif
 
+	if (EASY_NO_TERRAIN_MOVE_PENALTY=1)
+
+; =============== S U B R O U T I N E =======================================
+
+; Get combatant D0 move cost entry address -> A0
+;
+; Allies use a copy of the move costs table where every passable terrain
+; costs 1 MOV. Impassable terrain stays impassable, enemies use the
+; original table.
+
+EasyGetMoveCostEntryAddress:
+		move.l  d1,-(sp)
+		jsr     j_GetEntity
+		lea     table_EasyAllyMoveCostData(pc), a0
+		tst.b   d1
+		bpl.s   @Found          ; ally
+		movea.l (p_MoveCostData).l,a0
+@Found:
+		move.l  (sp)+,d1
+		jmp     (loc_23936).l
+
+    ; End of function EasyGetMoveCostEntryAddress
+
+table_EasyAllyMoveCostData:
+easyAllyMoveCostTable = 1
+		include "data\battles\global\movecosts.asm"
+easyAllyMoveCostTable = 0
+
+	endif
+
 		align $8000

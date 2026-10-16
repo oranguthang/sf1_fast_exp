@@ -19,6 +19,7 @@ EASY_CHURCH_CURE_CURSE_COST:        equ 10      ; Vanilla = 20. Must not exceed 
 
 ; Battle
 EASY_NO_DEFEAT_ON_LEADER_DEATH:     equ 1       ; The battle is lost only when no ally is left, instead of when Max dies. Max is revived when the battle ends.
+EASY_NO_TERRAIN_MOVE_PENALTY:       equ 1       ; Every passable terrain costs allies 1 MOV, like plains. Impassable terrain stays impassable, land effect and enemies are unchanged.
 EASY_POISON_DAMAGE:                 equ 1       ; Poison damage per turn, for allies and enemies. Vanilla = 2. Must not exceed 127.
 
 ; Ally growth
